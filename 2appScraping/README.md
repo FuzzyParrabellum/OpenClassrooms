@@ -38,3 +38,16 @@ de votre environnement virtuel.
  
  - Exécuter le fichier correspondant selon le sougait de scraper les informations d'un livre, d'une catégorie de livres, du site entier books.toscrape, ou les images de
  tous les livres contenues sur le site.
+
+--------------
+ADDITION 15/03/21
+--------------
+
+Plan de README
+
+INTRODUCTION (Titre 2appScraping)
+-explication brève du but de l'app
+
+Prérequis pour utiliser l'application
+
+Comment tester le code / l'exécuter
