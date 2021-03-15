@@ -4,7 +4,12 @@ import re
 import csv
 import os
 import time
+import sys
 
+try:
+    arg = sys.argv[1]
+except IndexError:
+    raise SystemExit("Please input a valid link after Scraping3Livre.py")
 
 def book_scraper(url, category_name=0):
     webpage = requests.get(url)
@@ -54,6 +59,8 @@ def book_scraper(url, category_name=0):
     url_img = url_img["src"] 
     image_url = "http://books.toscrape.com/" + re.sub('^\W{6}', '', url_img)
     
+    # si on appelle la fonction book_scraper directement pour scraper un livre unique
+    # on écrit toutes les informations de la page du livre dans un fichier .csv appellé book
     if category_name == 0:
         with open('book.csv', 'w', encoding='utf-8') as out:
             csv_writing = csv.writer(out, delimiter = ';', quoting = csv.QUOTE_MINIMAL)
@@ -63,8 +70,7 @@ def book_scraper(url, category_name=0):
     number_available, product_description, category, review_rating, image_url]
             csv_writing.writerow(list_of_entete)
             csv_writing.writerow(list_of_rowvalues)
-            print("category_name est égal à 0")
-
+    #si on appelle la fonction category_scraper qui appelle la helper function book_scraper
     else:
         list_of_rowvalues = [product_page_url, universal_product_code, book_title, price_including_tax, price_excluding_tax, \
     number_available, product_description, category, review_rating, image_url]
@@ -112,14 +118,13 @@ def category_scraper(category_url, dir_path=''):
     
     # on trouve le nom de la categorie pour pouvoir nommer le fichier csv
     category_name = re.sub('.+category\/books\/', '', category_url)
-    print('CATEGORY_NAME :' + category_name)
     if category_name[-1] == '/':
         category_name = category_name[0:-1]
     else:
         category_name = category_name
 
 
-
+    # on écrit un fichier .csv du nom de la catégorie avec un dir_path si on en a fourni un, avec tous les livres de la cat.
     with open('{}.csv'.format(dir_path + category_name), 'w', encoding='utf-8') as out:
         csv_writing = csv.writer(out, delimiter = ';', quoting = csv.QUOTE_ALL)
         list_of_entete = ['product_page_url', 'universal_product_code(upc)',' title', 'price_including_tax', 'price_excluding_tax', \
@@ -156,6 +161,7 @@ def book_site_scraper(book_site_url):
 
     dir_path = dir_path + "/"
 
+    # On scrape chaque catégorie et l'on range les fichiers .csv dans le dossier Csv_and_Images par défaut
     for link in category_links:
         category_scraper(link, dir_path)
         print(link + ' ... Scraped!')

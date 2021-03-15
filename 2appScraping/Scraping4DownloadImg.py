@@ -7,6 +7,12 @@ import time
 # import de shutil pr sauvegarder les photos localement
 import shutil
 
+import sys
+
+try:
+    arg = sys.argv[1]
+except IndexError:
+    raise SystemExit("Please input a valid link after Scraping1Livre.py")
 
 def book_scraper(url, category_name=0, download_img = False):
     webpage = requests.get(url)

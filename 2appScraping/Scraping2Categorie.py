@@ -2,7 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import csv
+import sys
 
+try:
+    arg = sys.argv[1]
+except IndexError:
+    raise SystemExit("Please input a valid link after Scraping2Livre.py")
 
 def book_scraper(url, category_name=0):
     webpage = requests.get(url)
@@ -36,8 +41,6 @@ def book_scraper(url, category_name=0):
     category = a_list[2]
     # la note du livre
     review_rating = soup.select("div p")
-    '''"def has_a_rating(tag):
-        return tag.attr('class') == "star-rating Four"'''
     review_printer = []
     dictionnary_printer = []
     list_printer = []
@@ -123,28 +126,11 @@ def category_scraper(category_url):
         
     
     
+category_scraper(arg)
     
-    
-
-category_scraper("http://books.toscrape.com/catalogue/category/books/mystery_3/index.html")       
-    
-
     
     
 
-'book_scraper("http://books.toscrape.com/catalogue/sharp-objects_997/index.html")'
-"""
-books_titles = soup.select("li h3 a")
+    
 
-paragraph_printer = []
-for text in books_titles:
-    paragraph_printer.append(text.attrs["title"])
-
-for i in paragraph_printer:
-    print(i)
-
-books_prices = soup.find_all(attrs={'class':'price_color'})
-
-for price in books_prices:
-    print(price.string)"""
 
