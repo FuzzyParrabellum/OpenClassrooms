@@ -2,6 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import csv
+import sys
+
+try:
+    arg = sys.argv[1]
+except IndexError:
+    raise SystemExit("Please input a valid link after Scraping1Livre.py")
 
 
 def book_scraper(url):
@@ -36,8 +42,6 @@ def book_scraper(url):
     category = a_list[2]
     # la note du livre
     review_rating = soup.select("div p")
-    '''"def has_a_rating(tag):
-        return tag.attr('class') == "star-rating Four"'''
     review_printer = []
     dictionnary_printer = []
     list_printer = []
@@ -60,35 +64,13 @@ def book_scraper(url):
 'number_available','product_description','category','review_rating','image_url']
         list_of_rowvalues = [product_page_url, universal_product_code, book_title, price_including_tax, price_excluding_tax, \
 number_available, product_description, category, review_rating, image_url]
-        """csv_writing.writerow(list_of_entete)
-        csv_writing.writerow(product_page_url + ';' + universal_product_code + ';' + book_title + ';' + price_including_tax + ';' + \
-        price_excluding_tax + ';' + number_available + ';' + product_description + ';' + category + ';' + review_rating + ';' + \
-        image_url)"""
         csv_writing.writerow(list_of_entete)
         csv_writing.writerow(list_of_rowvalues)
 
 
             
 
-        
-    
+book_scraper(arg)
+print(f"the book at {arg} was successfully scraped")
 
-    
-    
-
-book_scraper("http://books.toscrape.com/catalogue/sharp-objects_997/index.html")
-"""
-books_titles = soup.select("li h3 a")
-
-paragraph_printer = []
-for text in books_titles:
-    paragraph_printer.append(text.attrs["title"])
-
-for i in paragraph_printer:
-    print(i)
-
-books_prices = soup.find_all(attrs={'class':'price_color'})
-
-for price in books_prices:
-    print(price.string)"""
 
