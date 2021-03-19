@@ -16,12 +16,18 @@ On peut l'utiliser de cette manière :
 
 python Scraping1Livre.py http://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html
 -
+
+
+
 B. Scraping2Categorie.py correspond au code nécessaire pour scraper toute une catégorie, en utilisant book_scraper à l'intérieur de la fonction category_scraper,
 qui prend en paramètre l'url de la page de la catégorie souhaitée. Un fichier .csv du nom de la catégorie sera crée avec les informations des livres qui y sont contenus.
 On peut l'utiliser de cette manière :
 
 python Scraping2Categorie.py http://books.toscrape.com/catalogue/category/books/travel_2/index.html
 -
+
+
+
 C. Scraping3SiteBooks.py correspond au code nécessaire pour scraper tout le site de book.toscrape, en utilisant les fonctions book_scraper et category_scraper à l'intérieur
 de la fonction book_site_scraper. Cette dernière fonction prend en paramètre l'url de la page d'acceuil du site.
 Par défaut, tous les fichiers .csv seront enregistrés dans un dossier Csv_and_Images. 
@@ -29,6 +35,9 @@ On peut l'utiliser de cette manière :
 
 python Scraping3SiteBooks.py
 -
+
+
+
 D. Scraping4DownloadImg.py correspond au code nécessaire pour scraper les informations du site de books.toscrape ET enregistrer toutes les images des livres
 du site dans le même dossier Csv_and_Images. La même fonction book_site_scraper est utilisée, avec un argument supplémentaire, download_img = True, qui permet de télécharger les images en plus de la création des fichiers .csv.
 On peut l'utiliser de cette manière :
@@ -38,6 +47,8 @@ python Scraping4DownloadImg.py
 
 Il est possible d'ouvrir uniquement le fichier Scraping4DownloadImg  pour pouvoir voir toutes les fonctions crées, book_scraper, category_scraper et
 book_site_scraper.
+
+
 
 ----------
 Instructions temporaires pour faire fonctionner l'algorithme :
