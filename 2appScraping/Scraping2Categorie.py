@@ -89,7 +89,7 @@ def category_scraper(category_url):
     # La fonction category_scraper prends en argument l'url de l'index d'une catégorie du site books.toscrape.com,
     # et écrit ensuite un fichier .csv comprenant toutes les informations scrapées par la fonction book_scraper,
     # appliquée à tous les livres présents dans la catégorie.
-
+    
     category_webpage = requests.get(category_url)
     soup_category = BeautifulSoup(category_webpage.content, "html.parser")
 
@@ -99,6 +99,8 @@ def category_scraper(category_url):
     soups = [soup_category]
 
     # tant qu'il y a un bouton next en bas de la page, on rajoute un nouvel élément soup dans la liste et on passe à la prochaine page
+    if not next_page_button:
+        category_url = re.sub('[indexpage-]*\d*\.html$', '', category_url)
     while next_page_button:
         for text in next_page_button:
             # va trouver l'url de la prochaine page si il y en a une
@@ -110,7 +112,7 @@ def category_scraper(category_url):
         next_page_button = new_soup.find(attrs={'class':'next'})
     
     links = []
-    
+
     #Scrapage de tous les liens présents sur la page
     for soup_parsing in soups:
         lis = soup_parsing.select("li h3 a")
@@ -120,10 +122,13 @@ def category_scraper(category_url):
     #Chaque lien se voit attribuer le bon début pour accéder à une page au lieu de ../..
     for index in range(len(links)):
         links[index] = "http://books.toscrape.com/catalogue/" + re.sub('^\W{9}', '', links[index])
-    
+
     # on trouve le nom de la categorie pour pouvoir nommer le fichier csv
     category_name = re.sub('.+category\/books\/', '', category_url)
-    category_name = category_name[0:-1]
+    if category_name[-1] == '/':
+        category_name = category_name[0:-1]
+    else:
+        category_name = category_name
 
     # on écrit un fichier .csv comportant les informations de tous les livres de la catégorie choisie
     with open('{}.csv'.format(category_name), 'w', encoding='utf-8') as out:
