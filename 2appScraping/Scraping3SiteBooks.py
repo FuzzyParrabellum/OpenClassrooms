@@ -4,14 +4,15 @@ import re
 import csv
 import os
 import time
-import sys
 
-try:
-    arg = sys.argv[1]
-except IndexError:
-    raise SystemExit("Please input a valid link after Scraping3Livre.py")
+
 
 def book_scraper(url, category_name=0):
+    # La fonction book_scraper prends en argument un url, et va ensuite scraper le titre du livre,
+    # la page web du livre, la table des prix, le code_upc du livre, les prix avec et sans taxe, 
+    # le nombre d'exemplaires disponibles, la description, la catégorie, la note et l'url de l'image
+    # représentant le livre.
+
     webpage = requests.get(url)
     soup = BeautifulSoup(webpage.content, "html.parser")
     #titre du livre
@@ -82,6 +83,10 @@ def book_scraper(url, category_name=0):
     
 
 def category_scraper(category_url, dir_path=''):
+    # La fonction category_scraper prends en argument l'url de l'index d'une catégorie du site books.toscrape.com,
+    # et écrit ensuite un fichier .csv comprenant toutes les informations scrapées par la fonction book_scraper,
+    # appliquée à tous les livres présents dans la catégorie.
+
     category_webpage = requests.get(category_url)
     soup_category = BeautifulSoup(category_webpage.content, "html.parser")
 
@@ -137,6 +142,10 @@ def category_scraper(category_url, dir_path=''):
     
     
 def book_site_scraper(book_site_url):
+    # La fonction book_site_scraper prends en argument l'url du site de books.toscrape.com, et va
+    # scraper toutes les informations demandées de chaque livre présent dans chaque catégorie avant 
+    # d'écrire ces informations dans un fichiers .csv pour chaque catégorie.
+
     book_site_webpage = requests.get(book_site_url)
     book_site_soup = BeautifulSoup(book_site_webpage.content, "html.parser")
 
@@ -170,11 +179,7 @@ def book_site_scraper(book_site_url):
     
 
     
-# exemple d'appel de la fonction book_site_scraper pour faire un scraping de toutes les cat. de books2scrape
+# On appelle la fonction book_site_scraper pour faire un scraping de toutes les catégories de books.toscrape.com
 # cet appel va mettre toutes les données dans un fichier csv différent par catégorie et ces fichiers csv 
 # dans un dossier Csv_and_Images
 book_site_scraper("http://books.toscrape.com/index.html")
-
-# exemple d'appel de la fonction category_scraper pour uniquement scraper une catégorie,
-# crée un fichier csv du nom de la cat.
-'category_scraper("http://books.toscrape.com/catalogue/category/books/mystery_3/index.html")'

@@ -7,10 +7,17 @@ import sys
 try:
     arg = sys.argv[1]
 except IndexError:
-    raise SystemExit("Please input a valid link after Scraping1Livre.py")
+    raise SystemExit("Veuillez indiquer un lien valide d'un livre du site books.toscrape.com après Scraping1Livre.py")
 
 
 def book_scraper(url):
+    # La fonction book_scraper prends en argument un url, et scrape ensuite cet url pour écrire un fichier .csv
+    # comportant le titre du livre, la page web du livre, la table des prix, le code_upc du livre, les prix 
+    # avec et sans taxe, le nombre d'exemplaires disponibles, la description, la catégorie, la note et l'url
+    # de l'image représentant le livre.
+    # On l'utilise quand on exécute le fichier Scraping1Livre.py qui prend en argument un url, que la fonction utilise ensuite.
+
+
     webpage = requests.get(url)
     soup = BeautifulSoup(webpage.content, "html.parser")
     #titre du livre

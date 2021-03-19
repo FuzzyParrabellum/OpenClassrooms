@@ -7,14 +7,13 @@ import time
 # import de shutil pr sauvegarder les photos localement
 import shutil
 
-import sys
-
-try:
-    arg = sys.argv[1]
-except IndexError:
-    raise SystemExit("Please input a valid link after Scraping1Livre.py")
 
 def book_scraper(url, category_name=0, download_img = False):
+    # La fonction book_scraper prends en argument un url, et va ensuite scraper le titre du livre,
+    # la page web du livre, la table des prix, le code_upc du livre, les prix avec et sans taxe, 
+    # le nombre d'exemplaires disponibles, la description, la catégorie, la note et l'url de l'image
+    # représentant le livre.
+
     webpage = requests.get(url)
     soup = BeautifulSoup(webpage.content, "html.parser")
     #titre du livre
@@ -85,6 +84,10 @@ def book_scraper(url, category_name=0, download_img = False):
     
 
 def category_scraper(category_url, dir_path='', download_img = False):
+    # La fonction category_scraper prends en argument l'url de l'index d'une catégorie du site books.toscrape.com,
+    # et écrit ensuite un fichier .csv comprenant toutes les informations scrapées par la fonction book_scraper,
+    # appliquée à tous les livres présents dans la catégorie.
+
     category_webpage = requests.get(category_url)
     soup_category = BeautifulSoup(category_webpage.content, "html.parser")
 
