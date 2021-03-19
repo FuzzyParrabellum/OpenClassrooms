@@ -56,7 +56,7 @@ Instructions temporaires pour faire fonctionner l'algorithme :
 
 - Installer Python si ce n'est pas déjà fait, ici la version 3.8.0 a été utilisée.
 
-- Télécharger ce repository, puis aller dans le dossier OpenClassrooms
+- Télécharger ce repository, puis aller dans le dossier OpenClassrooms sur votre ordinateur.
 
 - utiliser la commande dans un éditeur de commande dans le dossier OpenClassrooms :
 
