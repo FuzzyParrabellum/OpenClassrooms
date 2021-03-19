@@ -12,7 +12,7 @@ Fonctionnement des fichiers et du code contenu à l'intérieur :
 ----------
 A. Scraping1Livre.py correspond au code nécessaire pour scraper un seul livre, en utilisant la fonction book_scraper qui prend en paramètre l'url de la page du livre.
 Un fichier .csv sera crée, appellé book, qui comprendra toutes les informations présentées ci-dessus.
-On peut l'utiliser de cette manière :
+On peut l'utiliser de cette manière en tapant dans une invite de commande:
 
 python Scraping1Livre.py http://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html
 
@@ -21,7 +21,7 @@ python Scraping1Livre.py http://books.toscrape.com/catalogue/its-only-the-himala
 
 B. Scraping2Categorie.py correspond au code nécessaire pour scraper toute une catégorie, en utilisant book_scraper à l'intérieur de la fonction category_scraper,
 qui prend en paramètre l'url de la page de la catégorie souhaitée. Un fichier .csv du nom de la catégorie sera crée avec les informations des livres qui y sont contenus.
-On peut l'utiliser de cette manière :
+On peut l'utiliser de cette manière en tapant dans une invite de commande:
 
 python Scraping2Categorie.py http://books.toscrape.com/catalogue/category/books/travel_2/index.html
 
@@ -31,7 +31,7 @@ python Scraping2Categorie.py http://books.toscrape.com/catalogue/category/books/
 C. Scraping3SiteBooks.py correspond au code nécessaire pour scraper tout le site de book.toscrape, en utilisant les fonctions book_scraper et category_scraper à l'intérieur
 de la fonction book_site_scraper. Cette dernière fonction prend en paramètre l'url de la page d'acceuil du site.
 Par défaut, tous les fichiers .csv seront enregistrés dans un dossier Csv_and_Images. 
-On peut l'utiliser de cette manière :
+On peut l'utiliser de cette manière en tapant dans une invite de commande:
 
 python Scraping3SiteBooks.py
 
@@ -40,7 +40,7 @@ python Scraping3SiteBooks.py
 
 D. Scraping4DownloadImg.py correspond au code nécessaire pour scraper les informations du site de books.toscrape ET enregistrer toutes les images des livres
 du site dans le même dossier Csv_and_Images. La même fonction book_site_scraper est utilisée, avec un argument supplémentaire, download_img = True, qui permet de télécharger les images en plus de la création des fichiers .csv.
-On peut l'utiliser de cette manière :
+On peut l'utiliser de cette manière en tapant dans une invite de commande:
 
 python Scraping4DownloadImg.py
 
@@ -54,16 +54,15 @@ book_site_scraper.
 Instructions temporaires pour faire fonctionner l'algorithme :
 ----------
 
-- Installer Python
+- Installer Python si ce n'est pas déjà fait, ici la version 3.8.0 a été utilisée.
 
-- utiliser la commande dans un éditeur de commande à l'endroit où on veut installer l'application :
+- Télécharger ce repository, puis aller dans le dossier OpenClassrooms
 
-python -m venv myapp
+- utiliser la commande dans un éditeur de commande dans le dossier OpenClassrooms :
 
-où myapp est le nom que vous voulez donner à votre environnement virtuel.
+python -m venv 2appScraping
 
-- Télécharger à partir de github les fichiers requirements.txt, README.md, Scraping1Livre, Scraping2Categorie, Scraping3SiteBooks, Scraping4DownloadImg dans le dossier
-de votre environnement virtuel.
+comme 2appScraping existe normalement déjà dans le dossier OpenClassrooms, un environnement virtuel sera crée dans le même dossier.
 
 - Utiliser la commande dans un éditeur de commande
  
